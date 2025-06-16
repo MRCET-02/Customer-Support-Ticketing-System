@@ -1,14 +1,59 @@
 ﻿using NUnit.Framework;
+using Customer_Ticketing_System.Models;
+using Customer_Ticketing_System.Services;
+using System.Threading.Tasks;
 
-namespace CustomerTicketingSystem.Tests.Tests
+namespace Customer_Ticketing_System.Tests
 {
     [TestFixture]
     public class UpdateTests
     {
-        [Test]
-        public void Test_TicketUpdate_Placeholder()
+        private TicketService service;
+
+        [SetUp]
+        public void Setup()
         {
-            Assert.Pass("Test logic to be added after core implementation is received.");
+            service = new TicketService();
+        }
+
+        [Test]
+        public async Task AssignAgent_ShouldChangeStatusToInProgress()
+        {
+            var customer = new Customer("Bob", "bob@example.com");
+            var agent = new Agent("AgentX", "Support");
+            var ticket = await service.CreateTicketAsync("Bug", "UI fails", customer);
+
+            await service.AssignAgentAsync(ticket.TicketId, agent);
+
+            var updated = (await service.GetAllTicketsAsync()).Find(t => t.TicketId == ticket.TicketId);
+
+            Assert.IsNotNull(updated.AssignedAgent);
+            Assert.AreEqual(TicketStatus.InProgress, updated.Status);
+        }
+
+        [Test]
+        public async Task UpdateStatus_ShouldChangeStatusToClosed()
+        {
+            var customer = new Customer("Carol", "carol@example.com");
+            var ticket = await service.CreateTicketAsync("Crash", "App crashes", customer);
+
+            await service.UpdateStatusAsync(ticket.TicketId, TicketStatus.Closed);
+
+            var updated = (await service.GetAllTicketsAsync()).Find(t => t.TicketId == ticket.TicketId);
+
+            Assert.AreEqual(TicketStatus.Closed, updated.Status);
+        }
+        [Test]
+        public async Task UpdateStatus_ShouldChangeStatusToResolved()
+        {
+            var customer = new Customer("Frank", "frank@example.com");
+            var ticket = await service.CreateTicketAsync("Connection Issue", "Can't connect to Wi-Fi", customer);
+
+            await service.UpdateStatusAsync(ticket.TicketId, TicketStatus.Resolved);
+
+            var updated = (await service.GetAllTicketsAsync()).Find(t => t.TicketId == ticket.TicketId);
+
+            Assert.AreEqual(TicketStatus.Resolved, updated.Status);
         }
     }
 }

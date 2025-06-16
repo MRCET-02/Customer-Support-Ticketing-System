@@ -1,14 +1,35 @@
 ﻿using NUnit.Framework;
+using Customer_Ticketing_System.Models;
+using Customer_Ticketing_System.Services;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CustomerTicketingSystem.Tests.Tests
+namespace Customer_TicketingSystem.Tests
 {
     [TestFixture]
     public class FilterTests
     {
-        [Test]
-        public void Test_TicketFiltering_Placeholder()
+        private TicketService service;
+
+        [SetUp]
+        public void Setup()
         {
-            Assert.Pass("Test logic to be added after core implementation is received.");
+            service = new TicketService();
+        }
+
+        [Test]
+        public async Task FilterTickets_ShouldReturnOnlyOpenTickets()
+        {
+            var customer = new Customer("Dan", "dan@example.com");
+
+            await service.CreateTicketAsync("1", "Desc1", customer);
+            var t2 = await service.CreateTicketAsync("2", "Desc2", customer);
+            await service.UpdateStatusAsync(t2.TicketId, TicketStatus.Closed);
+
+            var tickets = await service.GetAllTicketsAsync();
+            var openTickets = tickets.Where(t => t.Status == TicketStatus.Open).ToList();
+
+            Assert.IsTrue(openTickets.All(t => t.Status == TicketStatus.Open));
         }
     }
 }

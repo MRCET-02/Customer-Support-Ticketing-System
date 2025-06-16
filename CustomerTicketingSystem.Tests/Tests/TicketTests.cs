@@ -1,14 +1,33 @@
 ﻿using NUnit.Framework;
+using Customer_Ticketing_System.Models;
+using Customer_Ticketing_System.Services;
+using System.Threading.Tasks;
 
-namespace CustomerTicketingSystem.Tests.Tests
+namespace Customer_Ticketing_System.Tests
 {
     [TestFixture]
     public class TicketTests
     {
-        [Test]
-        public void Test_TicketCreation_Placeholder()
+        private TicketService service;
+
+        [SetUp]
+        public void Setup()
         {
-            Assert.Pass("Test logic to be added after core implementation is received.");
+            service = new TicketService();
+        }
+
+        [Test]
+        public async Task CreateTicket_ShouldCreateNewTicket()
+        {
+            var customer = new Customer("Alice", "alice@example.com");
+
+            var ticket = await service.CreateTicketAsync("Login Issue", "Cannot login", customer);
+
+            Assert.IsNotNull(ticket);
+            Assert.AreEqual("Login Issue", ticket.Title);
+            Assert.AreEqual(customer.Name, ticket.Customer.Name);
+            Assert.AreEqual(TicketStatus.Open, ticket.Status);
         }
     }
 }
+
