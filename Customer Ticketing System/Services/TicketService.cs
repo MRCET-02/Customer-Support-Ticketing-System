@@ -1,13 +1,21 @@
-﻿using Customer_Ticketing_System.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Customer_Ticketing_System.Models;
+using Customer_Ticketing_System.Utils;
 
 namespace Customer_Ticketing_System.Services
 {
     public class TicketService
     {
-        public async Task<Ticket> CreateTicketAsync(string title, string description, Customer customer)
+        public async Task<Ticket> CreateTicketAsync(string title, string description, Customer customer, DateTime? createdAt = null)
         {
             var tickets = await TicketFileHandler.ReadTicketsAsync();
-            var ticket = new Ticket(title, description, customer);
+            var ticket = new Ticket(title, description, customer)
+            {
+                CreatedAt = createdAt ?? DateTime.UtcNow
+            };
             tickets.Add(ticket);
             await TicketFileHandler.WriteTicketsAsync(tickets);
             return ticket;
@@ -39,6 +47,35 @@ namespace Customer_Ticketing_System.Services
         {
             return await TicketFileHandler.ReadTicketsAsync();
         }
+
+        public async Task<List<Ticket>> GetByStatusAsync(TicketStatus status)
+        {
+            var tickets = await TicketFileHandler.ReadTicketsAsync();
+            return tickets.Where(t => t.Status == status).ToList();
+        }
+
+        public async Task<List<Ticket>> GetByCustomerAsync(string name)
+        {
+            var tickets = await TicketFileHandler.ReadTicketsAsync();
+            return tickets
+                .Where(t => t.Customer.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        public async Task<List<Ticket>> GetByAgentDepartmentAsync(string department)
+        {
+            var tickets = await TicketFileHandler.ReadTicketsAsync();
+            return tickets
+                .Where(t => t.AssignedAgent?.Department == department)
+                .ToList();
+        }
+
+        public async Task<List<Ticket>> GetByDateRangeAsync(DateTime from, DateTime to)
+        {
+            var tickets = await TicketFileHandler.ReadTicketsAsync();
+            return tickets
+                .Where(t => t.CreatedAt >= from && t.CreatedAt <= to)
+                .ToList();
+        }
     }
 }
-
