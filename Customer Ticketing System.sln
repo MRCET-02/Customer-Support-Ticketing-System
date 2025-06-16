@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer Ticketing System", "Customer Ticketing System\Customer Ticketing System.csproj", "{5423705E-D08B-466B-B555-98B99E13674E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerTicketingSystem.Tests", "CustomerTicketingSystem.Tests\CustomerTicketingSystem.Tests.csproj", "{4648DBA1-270C-4C8D-BC4B-439360659BB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerTicketingSystem.Tests", "CustomerTicketingSystem.Tests\CustomerTicketingSystem.Tests.csproj", "{10B46A4A-E133-4749-8E5C-86C52D6AC9B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{5423705E-D08B-466B-B555-98B99E13674E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5423705E-D08B-466B-B555-98B99E13674E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5423705E-D08B-466B-B555-98B99E13674E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4648DBA1-270C-4C8D-BC4B-439360659BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4648DBA1-270C-4C8D-BC4B-439360659BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4648DBA1-270C-4C8D-BC4B-439360659BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4648DBA1-270C-4C8D-BC4B-439360659BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10B46A4A-E133-4749-8E5C-86C52D6AC9B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10B46A4A-E133-4749-8E5C-86C52D6AC9B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10B46A4A-E133-4749-8E5C-86C52D6AC9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10B46A4A-E133-4749-8E5C-86C52D6AC9B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
