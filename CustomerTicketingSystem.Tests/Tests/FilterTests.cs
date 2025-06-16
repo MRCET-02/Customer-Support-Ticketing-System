@@ -20,7 +20,7 @@ namespace Customer_TicketingSystem.Tests
         [Test]
         public async Task FilterTickets_ShouldReturnOnlyOpenTickets()
         {
-            var customer = new Customer("Dan", "dan@example.com");
+            var customer = new Customer("Rosy", "rosy@example.com");
 
             await service.CreateTicketAsync("1", "Desc1", customer);
             var t2 = await service.CreateTicketAsync("2", "Desc2", customer);
@@ -31,6 +31,7 @@ namespace Customer_TicketingSystem.Tests
 
             Assert.IsTrue(openTickets.All(t => t.Status == TicketStatus.Open));
         }
+
     }
 }
 

@@ -19,7 +19,7 @@ namespace Customer_Ticketing_System.Tests
         [Test]
         public async Task CreateTicket_ShouldCreateNewTicket()
         {
-            var customer = new Customer("Alice", "alice@example.com");
+            var customer = new Customer("Anu", "anu@example.com");
 
             var ticket = await service.CreateTicketAsync("Login Issue", "Cannot login", customer);
 
@@ -30,4 +30,3 @@ namespace Customer_Ticketing_System.Tests
         }
     }
 }
-

@@ -19,7 +19,7 @@ namespace Customer_Ticketing_System.Tests
         [Test]
         public async Task AssignAgent_ShouldChangeStatusToInProgress()
         {
-            var customer = new Customer("Bob", "bob@example.com");
+            var customer = new Customer("pavani", "pavani@example.com");
             var agent = new Agent("AgentX", "Support");
             var ticket = await service.CreateTicketAsync("Bug", "UI fails", customer);
 
@@ -34,7 +34,7 @@ namespace Customer_Ticketing_System.Tests
         [Test]
         public async Task UpdateStatus_ShouldChangeStatusToClosed()
         {
-            var customer = new Customer("Carol", "carol@example.com");
+            var customer = new Customer("harshitha", "harshitha@example.com");
             var ticket = await service.CreateTicketAsync("Crash", "App crashes", customer);
 
             await service.UpdateStatusAsync(ticket.TicketId, TicketStatus.Closed);
@@ -46,7 +46,7 @@ namespace Customer_Ticketing_System.Tests
         [Test]
         public async Task UpdateStatus_ShouldChangeStatusToResolved()
         {
-            var customer = new Customer("Frank", "frank@example.com");
+            var customer = new Customer("John", "John@example.com");
             var ticket = await service.CreateTicketAsync("Connection Issue", "Can't connect to Wi-Fi", customer);
 
             await service.UpdateStatusAsync(ticket.TicketId, TicketStatus.Resolved);

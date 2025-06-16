@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Customer_Ticketing_System.Models;
-using Customer_Ticketing_System.Utils;
 
 namespace Customer_Ticketing_System.Services
 {
