@@ -9,6 +9,7 @@ namespace Customer_Ticketing_System.Services
 {
     public class TicketService
     {
+        // ─────────────────────────────  Logging  ─────────────────────────────
         private static readonly string logFilePath;
 
         static TicketService()
@@ -16,33 +17,39 @@ namespace Customer_Ticketing_System.Services
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string dataDirectory = Path.Combine(baseDirectory, "Data", "Logs");
             Directory.CreateDirectory(dataDirectory);
+
             logFilePath = Path.Combine(dataDirectory, "error.log");
         }
 
-        private async Task LogErrorAsync(Exception ex)
+        private static async Task LogErrorAsync(Exception ex)
         {
-            var errorMessage = $"[{DateTime.Now}] {ex.GetType().Name}: {ex.Message}\n{ex.StackTrace}\n\n";
-            await File.AppendAllTextAsync(logFilePath, errorMessage);
+            string entry =
+                $"[{DateTime.Now}] {ex.GetType().Name}: {ex.Message}{Environment.NewLine}{ex.StackTrace}{Environment.NewLine}{Environment.NewLine}";
+            await File.AppendAllTextAsync(logFilePath, entry);
         }
 
-        public async Task<Ticket> CreateTicketAsync(string title, string description, Customer customer, DateTime? createdAt = null)
+        // ─────────────────────────────  Create  ──────────────────────────────
+        public async Task<Ticket> CreateTicketAsync(
+            string title,
+            string description,
+            Customer customer,
+            DateTime? createdAt = null)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(description))
-                {
-                    throw new ArgumentException("Title and description are required fields and cannot be empty.");
-                }
-                if (customer == null)
-                {
+                    throw new ArgumentException("Title and description cannot be empty.");
+
+                if (customer is null)
                     throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
-                }
 
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
+
                 var ticket = new Ticket(title, description, customer)
                 {
                     CreatedAt = createdAt ?? DateTime.UtcNow
                 };
+
                 tickets.Add(ticket);
                 await TicketFileHandler.WriteTicketsAsync(tickets);
                 return ticket;
@@ -54,22 +61,19 @@ namespace Customer_Ticketing_System.Services
             }
         }
 
+        // ─────────────────────────────  Update  ──────────────────────────────
         public async Task AssignAgentAsync(Guid ticketId, Agent agent)
         {
             try
             {
-                if (agent == null)
-                {
+                if (agent is null)
                     throw new ArgumentNullException(nameof(agent), "Agent cannot be null.");
-                }
 
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
-                var ticket = tickets.FirstOrDefault(t => t.TicketId == ticketId);
+                var ticket  = tickets.FirstOrDefault(t => t.TicketId == ticketId);
 
-                if (ticket == null)
-                {
-                    throw new KeyNotFoundException($"Ticket with ID '{ticketId}' was not found.");
-                }
+                if (ticket is null)
+                    throw new KeyNotFoundException($"Ticket '{ticketId}' not found.");
 
                 ticket.AssignAgent(agent);
                 await TicketFileHandler.WriteTicketsAsync(tickets);
@@ -86,18 +90,17 @@ namespace Customer_Ticketing_System.Services
             try
             {
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
-                var ticket = tickets.FirstOrDefault(t => t.TicketId == ticketId);
+                var ticket  = tickets.FirstOrDefault(t => t.TicketId == ticketId);
 
-                if (ticket == null)
-                {
-                    throw new KeyNotFoundException($"Ticket with ID '{ticketId}' was not found.");
-                }
-                if(ticket.Status == TicketStatus.Closed)
-                {
-                    throw new Exception("Cannot Updated a Closed Ticket Status");
-                }
+                if (ticket is null)
+                    throw new KeyNotFoundException($"Ticket '{ticketId}' not found.");
+
+                if (ticket.Status == TicketStatus.Closed)
+                    throw new InvalidOperationException("Cannot update a closed ticket.");
+
                 ticket.UpdateStatus(status);
                 ticket.UpdatedAt = DateTime.UtcNow;
+
                 await TicketFileHandler.WriteTicketsAsync(tickets);
             }
             catch (Exception ex)
@@ -106,27 +109,24 @@ namespace Customer_Ticketing_System.Services
                 throw;
             }
         }
+
         public async Task CloseTicketAsync(Guid ticketId)
         {
             try
             {
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
-                var ticket = tickets.FirstOrDefault(t => t.TicketId == ticketId);
+                var ticket  = tickets.FirstOrDefault(t => t.TicketId == ticketId);
 
-                if (ticket == null)
-                {
-                    throw new KeyNotFoundException($"Ticket with ID '{ticketId}' was not found.");
-                }
+                if (ticket is null)
+                    throw new KeyNotFoundException($"Ticket '{ticketId}' not found.");
+
                 if (ticket.Status == TicketStatus.Closed)
-                {
-                    throw new Exception("Cannot Close an Already Closed Ticket");
-                }
-                else
-                {
-                    ticket.Status = TicketStatus.Closed;
-                    ticket.UpdatedAt = DateTime.UtcNow;
-                }
-                    await TicketFileHandler.WriteTicketsAsync(tickets);
+                    throw new InvalidOperationException("Ticket is already closed.");
+
+                ticket.Status    = TicketStatus.Closed;
+                ticket.UpdatedAt = DateTime.UtcNow;
+
+                await TicketFileHandler.WriteTicketsAsync(tickets);
             }
             catch (Exception ex)
             {
@@ -134,18 +134,10 @@ namespace Customer_Ticketing_System.Services
                 throw;
             }
         }
-        public async Task<List<Ticket>> GetAllTicketsAsync()
-        {
-            try
-            {
-                return await TicketFileHandler.ReadTicketsAsync();
-            }
-            catch (Exception ex)
-            {
-                await LogErrorAsync(ex);
-                throw;
-            }
-        }
+
+        // ─────────────────────────────  Queries  ─────────────────────────────
+        public async Task<List<Ticket>> GetAllTicketsAsync() =>
+            await TicketFileHandler.ReadTicketsAsync();
 
         public async Task<List<Ticket>> GetByStatusAsync(TicketStatus status)
         {
@@ -167,7 +159,7 @@ namespace Customer_Ticketing_System.Services
             {
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
                 return tickets
-                    .Where(t => t.Customer != null && t.Customer.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    .Where(t => t.Customer?.Name.Equals(name, StringComparison.OrdinalIgnoreCase) == true)
                     .ToList();
             }
             catch (Exception ex)
@@ -183,7 +175,7 @@ namespace Customer_Ticketing_System.Services
             {
                 var tickets = await TicketFileHandler.ReadTicketsAsync();
                 return tickets
-                    .Where(t => t.AssignedAgent?.Department != null && t.AssignedAgent.Department.Equals(department, StringComparison.OrdinalIgnoreCase))
+                    .Where(t => t.AssignedAgent?.Department?.Equals(department, StringComparison.OrdinalIgnoreCase) == true)
                     .ToList();
             }
             catch (Exception ex)
