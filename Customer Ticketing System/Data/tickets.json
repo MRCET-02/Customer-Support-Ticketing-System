@@ -1,0 +1,312 @@
+[
+  {
+    "TicketId": "0e06ecbb-3ec8-4d06-a3c8-ff22445974d6",
+    "Title": "Login Issue",
+    "Description": "Cannot log in",
+    "Customer": {
+      "CustomerId": "7556d400-08b1-4fc8-b2de-de27f756959b",
+      "Name": "Bharath",
+      "Email": "bharath@email.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "9350b0fd-2adc-42b0-865f-fbde57718611",
+      "Name": "Deepa",
+      "Department": "Support"
+    },
+    "Status": 1,
+    "CreatedAt": "2025-06-11T00:00:00+05:30"
+  },
+  {
+    "TicketId": "faa93ae5-f112-4078-8223-6e0c85c6a1bf",
+    "Title": "Payment Failure",
+    "Description": "Error on checkout",
+    "Customer": {
+      "CustomerId": "e6b0b8da-2f2b-464c-9a31-8035e46f7224",
+      "Name": "Anita",
+      "Email": "anita@email.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "43e48a0e-a136-4518-8f04-566d235695a1",
+      "Name": "Rajesh",
+      "Department": "Escalations"
+    },
+    "Status": 2,
+    "CreatedAt": "2025-06-14T00:00:00+05:30"
+  },
+  {
+    "TicketId": "d2de1da5-4f32-4dbd-a8db-1a17973d0efc",
+    "Title": "Bug in UI",
+    "Description": "Misaligned button",
+    "Customer": {
+      "CustomerId": "7556d400-08b1-4fc8-b2de-de27f756959b",
+      "Name": "Bharath",
+      "Email": "bharath@email.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-15T00:00:00+05:30"
+  },
+  {
+    "TicketId": "094c6467-2d07-4226-b0b4-26c7a8d78a1d",
+    "Title": "Issue",
+    "Description": "Same desc",
+    "Customer": {
+      "CustomerId": "0a96f334-7a28-4fab-84be-7aae17cb2e9e",
+      "Name": "Eve",
+      "Email": "eve@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:38:58.5315112Z"
+  },
+  {
+    "TicketId": "a22d47a4-981a-4429-8c58-584ebbd76499",
+    "Title": "Issue",
+    "Description": "Same desc",
+    "Customer": {
+      "CustomerId": "0a96f334-7a28-4fab-84be-7aae17cb2e9e",
+      "Name": "Eve",
+      "Email": "eve@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:38:58.5527832Z"
+  },
+  {
+    "TicketId": "956afc09-021e-4225-bd1e-f723a24fa5f6",
+    "Title": "Login Issue",
+    "Description": "Cannot login",
+    "Customer": {
+      "CustomerId": "9c7131d4-b53d-43ef-8ca0-2424523236f9",
+      "Name": "Alice",
+      "Email": "alice@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:38:58.5673877Z"
+  },
+  {
+    "TicketId": "771f4c75-fac9-44d9-aecb-8f9fd4ae5ded",
+    "Title": "Bug",
+    "Description": "UI fails",
+    "Customer": {
+      "CustomerId": "1b1a159c-cfce-463e-980b-9ca1c5a72dda",
+      "Name": "Bob",
+      "Email": "bob@example.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "351805ce-4f38-4dcf-8d8c-ba1ae98c8030",
+      "Name": "AgentX",
+      "Department": "Support"
+    },
+    "Status": 1,
+    "CreatedAt": "2025-06-16T12:38:58.5789813Z"
+  },
+  {
+    "TicketId": "4de63e2b-c571-44b2-8fc2-38cc8bea145c",
+    "Title": "Crash",
+    "Description": "App crashes",
+    "Customer": {
+      "CustomerId": "f1abd3c0-26c9-491f-9968-5fe3b63593d8",
+      "Name": "Carol",
+      "Email": "carol@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 3,
+    "CreatedAt": "2025-06-16T12:38:58.6059546Z"
+  },
+  {
+    "TicketId": "f18bd4ef-cead-4d0a-9a9d-efd71e91b404",
+    "Title": "Connection Issue",
+    "Description": "Can\u0027t connect to Wi-Fi",
+    "Customer": {
+      "CustomerId": "4714e296-5e9f-4293-9653-36f411302351",
+      "Name": "Frank",
+      "Email": "frank@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 2,
+    "CreatedAt": "2025-06-16T12:38:58.6291157Z"
+  },
+  {
+    "TicketId": "1226c2d2-669d-4281-aee1-37b5203f52e3",
+    "Title": "1",
+    "Description": "Desc1",
+    "Customer": {
+      "CustomerId": "44e3ccde-33e7-43bd-bfb5-f9c440986018",
+      "Name": "Dan",
+      "Email": "dan@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:38:58.6553964Z"
+  },
+  {
+    "TicketId": "b44b81d6-8780-468f-8c41-c13982ba2f80",
+    "Title": "2",
+    "Description": "Desc2",
+    "Customer": {
+      "CustomerId": "44e3ccde-33e7-43bd-bfb5-f9c440986018",
+      "Name": "Dan",
+      "Email": "dan@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 3,
+    "CreatedAt": "2025-06-16T12:38:58.6658552Z"
+  },
+  {
+    "TicketId": "424bc593-0659-49ba-803b-fa9b5111f81b",
+    "Title": "Issue",
+    "Description": "Same desc",
+    "Customer": {
+      "CustomerId": "1aaeb9ba-fc1b-426d-8142-4fd6924cf94c",
+      "Name": "Eve",
+      "Email": "eve@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:40:53.8566183Z"
+  },
+  {
+    "TicketId": "46636646-72fd-4b13-bcfc-137af4c2b0e8",
+    "Title": "Issue",
+    "Description": "Same desc",
+    "Customer": {
+      "CustomerId": "1aaeb9ba-fc1b-426d-8142-4fd6924cf94c",
+      "Name": "Eve",
+      "Email": "eve@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:40:53.8817437Z"
+  },
+  {
+    "TicketId": "83202728-d22d-42c7-8c8a-9e4cfe4d40b1",
+    "Title": "Login Issue",
+    "Description": "Cannot login",
+    "Customer": {
+      "CustomerId": "a9ead534-c71c-485a-b093-b32d14dc6834",
+      "Name": "Alice",
+      "Email": "alice@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:40:53.8942217Z"
+  },
+  {
+    "TicketId": "2f3286a0-c572-4e86-ba37-bd36eb01c5a6",
+    "Title": "Bug",
+    "Description": "UI fails",
+    "Customer": {
+      "CustomerId": "95a3f7b1-3fd6-4780-9a05-29e7be2a314c",
+      "Name": "Bob",
+      "Email": "bob@example.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "1d50f417-fa08-48c9-b81e-e0a5653b98d3",
+      "Name": "AgentX",
+      "Department": "Support"
+    },
+    "Status": 1,
+    "CreatedAt": "2025-06-16T12:40:53.9051241Z"
+  },
+  {
+    "TicketId": "472b4d9c-5f75-4320-8587-ab50d402b8ca",
+    "Title": "Crash",
+    "Description": "App crashes",
+    "Customer": {
+      "CustomerId": "ba841bbe-772e-42bd-a62c-41035e83a93c",
+      "Name": "Carol",
+      "Email": "carol@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 3,
+    "CreatedAt": "2025-06-16T12:40:53.9308653Z"
+  },
+  {
+    "TicketId": "44f80b27-1810-49d9-bd25-6c90b8e1291a",
+    "Title": "Connection Issue",
+    "Description": "Can\u0027t connect to Wi-Fi",
+    "Customer": {
+      "CustomerId": "7146f6d7-daea-469c-9d86-76d3738a5960",
+      "Name": "Frank",
+      "Email": "frank@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 2,
+    "CreatedAt": "2025-06-16T12:40:53.9586353Z"
+  },
+  {
+    "TicketId": "9bdaffbd-0aa0-4aa6-8fa8-52e64c88def5",
+    "Title": "1",
+    "Description": "Desc1",
+    "Customer": {
+      "CustomerId": "b3dd6a2e-1985-4a9a-b85d-05389ed54aea",
+      "Name": "Dan",
+      "Email": "dan@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-16T12:40:53.9907077Z"
+  },
+  {
+    "TicketId": "4027dd40-2202-4001-a02a-a12b06dd85b0",
+    "Title": "2",
+    "Description": "Desc2",
+    "Customer": {
+      "CustomerId": "b3dd6a2e-1985-4a9a-b85d-05389ed54aea",
+      "Name": "Dan",
+      "Email": "dan@example.com"
+    },
+    "AssignedAgent": null,
+    "Status": 3,
+    "CreatedAt": "2025-06-16T12:40:54.0038732Z"
+  },
+  {
+    "TicketId": "d44722fa-49b6-4a9a-9f5b-bf1f0c7709c7",
+    "Title": "Login Issue",
+    "Description": "Cannot log in",
+    "Customer": {
+      "CustomerId": "edd457f3-3595-47a2-b88d-7ca2016a175a",
+      "Name": "Bharath",
+      "Email": "bharath@email.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "42d1e15d-a4f1-47a1-953e-fd3d15766182",
+      "Name": "Deepa",
+      "Department": "Support"
+    },
+    "Status": 1,
+    "CreatedAt": "2025-06-11T00:00:00+05:30"
+  },
+  {
+    "TicketId": "a7412dd3-accd-4e29-bd39-7f752af00a3c",
+    "Title": "Payment Failure",
+    "Description": "Error on checkout",
+    "Customer": {
+      "CustomerId": "03d3cba8-cc82-4968-a3d9-05b7802103c3",
+      "Name": "Anita",
+      "Email": "anita@email.com"
+    },
+    "AssignedAgent": {
+      "AgentId": "3f2cd6b8-7bae-4862-b786-2c0dde09cc3d",
+      "Name": "Rajesh",
+      "Department": "Escalations"
+    },
+    "Status": 2,
+    "CreatedAt": "2025-06-14T00:00:00+05:30"
+  },
+  {
+    "TicketId": "ae0644b2-693f-4500-944d-9d5ae464d82c",
+    "Title": "Bug in UI",
+    "Description": "Misaligned button",
+    "Customer": {
+      "CustomerId": "edd457f3-3595-47a2-b88d-7ca2016a175a",
+      "Name": "Bharath",
+      "Email": "bharath@email.com"
+    },
+    "AssignedAgent": null,
+    "Status": 0,
+    "CreatedAt": "2025-06-15T00:00:00+05:30"
+  }
+]
