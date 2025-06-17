@@ -9,7 +9,7 @@
         public Agent? AssignedAgent { get; set; }
         public TicketStatus Status { get; set; } = TicketStatus.Open;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
+        public DateTime UpdatedAt { get; set; }
         public Ticket(string title, string description, Customer customer)
         {
             Title = title;
