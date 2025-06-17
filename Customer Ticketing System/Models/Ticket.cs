@@ -8,6 +8,7 @@
         public Customer Customer { get; set; }
         public Agent? AssignedAgent { get; set; }
         public TicketStatus Status { get; set; } = TicketStatus.Open;
+        public Priority Priority { get; set; } = Priority.Medium; 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public Ticket(string title, string description, Customer customer)
