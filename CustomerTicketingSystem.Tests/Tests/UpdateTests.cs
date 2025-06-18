@@ -55,6 +55,31 @@ namespace Customer_Ticketing_System.Tests
 
             Assert.AreEqual(TicketStatus.Resolved, updated.Status);
         }
+        [Test]
+        public async Task AssignAgent_Twice_ShouldUpdateToNewAgent()
+        {
+            var customer = new Customer("Divya", "divya@example.com");
+            var agent1 = new Agent("Agent1", "Support");
+            var agent2 = new Agent("Agent2", "Escalations");
+            var ticket = await service.CreateTicketAsync("Agent Reassignment", "Testing reassignment", customer);
+
+            await service.AssignAgentAsync(ticket.TicketId, agent1);
+            await service.AssignAgentAsync(ticket.TicketId, agent2);
+
+            var updated = (await service.GetAllTicketsAsync()).Find(t => t.TicketId == ticket.TicketId);
+            Assert.AreEqual("Agent2", updated.AssignedAgent.Name);
+        }
+        [Test]
+        public void UpdateStatus_NonExistentTicket_ShouldThrowKeyNotFound()
+        {
+            var randomId = Guid.NewGuid();
+
+            Assert.ThrowsAsync<KeyNotFoundException>(async () =>
+            {
+                await service.UpdateStatusAsync(randomId, TicketStatus.Closed);
+            });
+        }
+
     }
 }
 

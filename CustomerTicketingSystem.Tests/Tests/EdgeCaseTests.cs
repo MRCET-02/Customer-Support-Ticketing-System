@@ -26,5 +26,50 @@ namespace Customer_Ticketing_System.Tests
 
             Assert.AreNotEqual(t1.TicketId, t2.TicketId);
         }
+        [Test]
+        public void CreateTicket_WithNullDescription_ShouldThrow()
+        {
+            var customer = new Customer("Nikhil", "nikhil@example.com");
+
+            Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                await service.CreateTicketAsync("Title", null, customer);
+            });
+        }
+
+        [Test]
+        public async Task CreateTicket_WithLongTitle_ShouldSucceed()
+        {
+            var customer = new Customer("Vamsi", "vamsi@example.com");
+            var longTitle = new string('A', 300);
+
+            var ticket = await service.CreateTicketAsync(longTitle, "Desc", customer);
+
+            Assert.AreEqual(longTitle, ticket.Title);
+        }
+
+        [Test]
+        public async Task CreateMultipleTickets_AllShouldHaveUniqueIds()
+        {
+            var customer = new Customer("Tanya", "tanya@example.com");
+
+            var ids = new List<Guid>();
+            for (int i = 0; i < 5; i++)
+            {
+                var ticket = await service.CreateTicketAsync($"Title {i}", $"Desc {i}", customer);
+                ids.Add(ticket.TicketId);
+            }
+
+            Assert.AreEqual(ids.Count, ids.Distinct().Count());
+        }
+        [Test]
+        public void CreateTicket_WithNullCustomer_ShouldThrowArgumentNullException()
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await service.CreateTicketAsync("Title", "Desc", null);
+            });
+        }
     }
 }
+
